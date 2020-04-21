@@ -1,3 +1,5 @@
+%% Alguns formas de usar condições em Erlang
+
 -module(syntax_01).
 -export([tem_pandemia/1, esta_sentado/1]).
 
