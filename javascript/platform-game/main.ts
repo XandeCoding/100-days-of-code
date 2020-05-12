@@ -23,7 +23,7 @@ class Level {
     startActors: Array<any>
 
     constructor(plan) {
-        let rows = plan.trim().split("\n").map(data => [...data])
+        let rows = plan.trim().split('\n').map(data => [...data])
         this.height = rows.length
         this.width = rows[0].length
         this.startActors = []
@@ -33,10 +33,10 @@ class Level {
             return row.map((ch, x) => {
                 let type = levelChars[ch];
                 // Trocar por "type instanceof string"
-                if (typeof type == "string") return type
+                if (typeof type == 'string') return type
                 this.startActors.push(
                     type.create(new Vec(x, y), ch));                
-                return "empty";
+                return 'empty';
             })
         })
     }
@@ -55,11 +55,11 @@ class State {
     }
 
     static start(level) {
-        return new State(level, level.startActors, "playing")
+        return new State(level, level.startActors, 'playing')
     }
 
     get player() {
-        return this.actors.find(a => a.type == "player")
+        return this.actors.find(a => a.type == 'player')
     }
 }
 
@@ -75,7 +75,7 @@ class Player {
         this.size = new Vec(0.8, 1.5)
     }
 
-    get type() { return "player"}
+    get type() { return 'player'}
 
     static create(position) {
         return new Player(position.plus(new Vec(0, -0.5)),
@@ -96,7 +96,7 @@ class Lava {
         this.size = new Vec(1, 1)
     }
 
-    get type() { return "lava" }
+    get type() { return 'lava' }
 
     static create(position, ch) {
         if (ch === '=') {
@@ -125,7 +125,7 @@ class Coin {
         this.size = new Vec(0.6, 0.6)
     }
 
-    get type() { return "coin" }
+    get type() { return 'coin' }
 
     static create(position) {
         let basePos = position.plus(new Vec(0.2, 0.1))
@@ -133,6 +133,94 @@ class Coin {
                         Math.random() * Math.PI * 2)
     }
 }
+
+function elt(name, attrs, ...children) {
+    let dom = document.createElement(name)
+    for (let attr of Object.keys(attrs)) {
+        dom.setAttribute(attr, attrs[attr])
+    }
+    for (let child of children) {
+        dom.appendChild(child)
+    }
+    return dom
+}
+
+function drawGrid(level) {
+    return elt('table', {
+        class: 'background',
+        style: `width: ${ level.width * scale }px`},
+                ...level.rows.map(row => {
+                    elt('tr', { style: `height: ${ scale }px`},
+                    ...row.map(type => {
+                        elt('td', { class: type })
+                    }))
+                })
+    )
+}
+function drawActors(actors) {
+    return elt("div", {} , ...actors.map(actor => {
+        let rect = elt('div', { class: `actor ${ actor.type }`})
+        rect.style.width = `${ actor.size.x * scale }px`
+        rect.style.height = `${ actor.size.y * scale }px`
+        rect.style.left = `${ actor.pos.x * scale }px`
+        rect.style.top = `${ actor.pos.y * scale }px`
+        return rect
+    }))
+}
+class DOMDisplay {
+    dom: any
+    actorLayer: any
+
+    constructor(parent, level) {
+        console.log('funfou')
+        this.dom = elt('div', { class: 'game' }, drawGrid(level))
+        this.actorLayer = null
+        parent.appendChild(this.dom)
+    }
+
+    syncState(state) {
+        if (this.actorLayer) this.actorLayer.remove()
+        this.actorLayer = drawActors(state.actors)
+        this.dom.appendChild(this.actorLayer)
+        this.dom.className = `game ${ state. status }`
+        this.scrollPlayerIntoView(state)
+    }
+
+    scrollPlayerIntoView(state) {
+        let width = this.dom.clientWidth
+        let height = this.dom.clientHeight
+        let margin = width / 3
+
+        // The viewport
+
+        let left = this.dom.scrollLeft
+        let right = left + width
+        let top = this.dom.scrollTop
+        let bottom = top + height
+
+        let player = state.player
+        let center = player.pos.plus(player.size.times(0.5))
+                     .times(scale)
+        
+        if (center.x < left + margin) {
+            this.dom.scrollLeft = center.x - margin
+        } 
+        else if (center.x > right - margin) {
+            this.dom.scrollLeft = center.x + margin - width
+        } 
+
+        if (center.y < top + margin) {
+            this.dom.scrollTop = center.y - margin
+        }
+        else if (center.y > bottom - margin) {
+            this.dom.scrollTop = center.y + margin - height
+        }
+
+    }
+
+    clear() { this.dom.remove() }
+}
+
 // Constraints
 
 let simpleLevelPlan = `
@@ -152,6 +240,8 @@ const levelChars = {
      '@': Player, 'o': Coin,
      '=': Lava, '|': Lava, 'v': Lava
 }
+const scale = 20;
 
 let simpleLevel = new Level(simpleLevelPlan)
 console.log(`${ simpleLevel.width } by ${ simpleLevel.height}`)
+console.log('compilou')
