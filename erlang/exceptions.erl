@@ -15,6 +15,6 @@ black_knight(Attack) when is_function(Attack, 0) ->
     catch
         throw: slice -> "It is but a scratch.";
         error: cut_arm -> "I've had worse.";
-        exit: cut_leg -> "Come on your bastart";
+        exit: cut_leg -> "Come on you bastard";
         _:_ -> "Just a flesh wound."
     end.

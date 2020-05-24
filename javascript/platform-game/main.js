@@ -205,7 +205,7 @@ var levelChars = {
     '=': Lava, '|': Lava, 'v': Lava
 };
 var scale = 20;
-var simpleLevel = new Level(simpleLevelPlan);
-console.log(simpleLevel.width + " by " + simpleLevel.height);
+// let simpleLevel = new Level(simpleLevelPlan)
+// console.log(`${ simpleLevel.width } by ${ simpleLevel.height}`)
 console.log('compilou');
 //# sourceMappingURL=main.js.map

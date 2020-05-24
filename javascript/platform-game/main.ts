@@ -242,6 +242,6 @@ const levelChars = {
 }
 const scale = 20;
 
-let simpleLevel = new Level(simpleLevelPlan)
-console.log(`${ simpleLevel.width } by ${ simpleLevel.height}`)
+// let simpleLevel = new Level(simpleLevelPlan)
+// console.log(`${ simpleLevel.width } by ${ simpleLevel.height}`)
 console.log('compilou')
