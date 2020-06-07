@@ -1,3 +1,4 @@
+%%%% Exercicio para pesquisar valor em arvore ... exemplo de arvore (2, {node, {key, 2, {node, 'nil'}, {node, 'nil'}}})
 -module(tree_lookup).
 -compile(export_all).
 
