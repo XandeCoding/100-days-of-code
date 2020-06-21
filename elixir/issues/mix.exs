@@ -7,6 +7,7 @@ defmodule Issues.MixProject do
       escript: escript_config(),
       version: "0.1.0",
       elixir: "~> 1.10",
+      source_url: "https://github.com/XandeCoding/100-days-of-code",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
