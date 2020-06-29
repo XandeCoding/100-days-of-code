@@ -7,7 +7,7 @@ defmodule Duper.Application do
       Duper.Results,
       { Duper.PathFinder, "/home/alexandre/Downloads" },
       Duper.WorkerSupervisor,
-      { Duper.Gatherer, 1}
+      { Duper.Gatherer, 1 }
     ]
 
     opts = [strategy: :one_for_all, name: Duper.Supervisor]
