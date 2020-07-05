@@ -12,27 +12,29 @@ const Header = styled.header `
 
   div {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     max-width: 960;
     padding: 1.45rem 1.0875rem
   }
 `
 
-const Icon = styled.a `
-  cursor: pointer;
-  margin-left: auto;
-`
-
 const NavLinks = styled.div `
   font-size: 1.8rem;
-  margin: 0 auto;
 
-  nav {
-    
+  a {
+    cursor: pointer;
+    margin: 0 1rem;
+  }
+
+  svg {
+    margin-left: 2.3rem;
+    margin-right: -2rem;
   }
 `
 
-const HeaderComponent = ({ siteTitle }) => (
+const HeaderComponent = ({ siteTitle }) => {
+  return (
     <Header>
       <div>
         <h1>
@@ -41,26 +43,23 @@ const HeaderComponent = ({ siteTitle }) => (
           </Link>
         </h1> 
         <NavLinks>
-          <nav>
-            <Link to="/">
-                Home
-            </Link>
-            <Link to="/">
-                Shop
-            </Link>
-            <Link to="/">
-                Contact
-            </Link>
-          </nav>
-        </NavLinks>
-        
-
-        <Icon>
-          <CartAlt size="32"></CartAlt>
-        </Icon>  
+          <Link to="/">
+              Home
+          </Link>
+          <Link to="/">
+              Shop
+          </Link>
+          <Link to="/">
+              Contact
+          </Link>
+          <Link to="/">
+            <CartAlt size="32" />            
+          </Link>
+        </NavLinks>      
       </div>
-    </Header>
-)
+    </Header>   
+  )  
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
@@ -69,5 +68,6 @@ Header.propTypes = {
 Header.defaultProps = {
   siteTitle: ``,
 }
+
 
 export default HeaderComponent
