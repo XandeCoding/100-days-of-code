@@ -12,7 +12,6 @@ const Header = styled.header `
 
   div {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     max-width: 960;
     padding: 1.45rem 1.0875rem
@@ -21,21 +20,46 @@ const Header = styled.header `
 
 const Icon = styled.a `
   cursor: pointer;
+  margin-left: auto;
+`
+
+const NavLinks = styled.div `
+  font-size: 1.8rem;
+  margin: 0 auto;
+
+  nav {
+    
+  }
 `
 
 const HeaderComponent = ({ siteTitle }) => (
-  <Header>
-    <div>
-      <h1>
-        <Link to="/">
-          {siteTitle}
-        </Link>
-      </h1>    
-      <Icon>
-        <CartAlt size="32"></CartAlt>
-      </Icon>  
-    </div>
-  </Header>
+    <Header>
+      <div>
+        <h1>
+          <Link to="/">
+            {siteTitle}
+          </Link>
+        </h1> 
+        <NavLinks>
+          <nav>
+            <Link to="/">
+                Home
+            </Link>
+            <Link to="/">
+                Shop
+            </Link>
+            <Link to="/">
+                Contact
+            </Link>
+          </nav>
+        </NavLinks>
+        
+
+        <Icon>
+          <CartAlt size="32"></CartAlt>
+        </Icon>  
+      </div>
+    </Header>
 )
 
 Header.propTypes = {
