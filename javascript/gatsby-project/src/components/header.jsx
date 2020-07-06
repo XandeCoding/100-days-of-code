@@ -61,11 +61,11 @@ const HeaderComponent = ({ siteTitle }) => {
   )  
 }
 
-Header.propTypes = {
+HeaderComponent.propTypes = {
   siteTitle: PropTypes.string,
 }
 
-Header.defaultProps = {
+HeaderComponent.defaultProps = {
   siteTitle: ``,
 }
 

@@ -1,7 +1,9 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { Search } from "@styled-icons/boxicons-solid"
 
-const Search = styled.div `
+const WrapperSearch = styled.div `
     display: block;
     text-align: center;
 
@@ -34,78 +36,30 @@ const Search = styled.div `
         height: 96px;
         font-size: 60px;
         line-height: 1;
+        color: #fff;
     } 
 
     input[type="text"]::placeholder {
         color: #e16868
     }
-
-    .s-cover {
-        width: 1px;
-        padding-left: 35px;
-    }
-
-    #s-circle {
-        position: relative;
-        top: -8px;
-        left: 0;
-        width: 43px;
-        height: 43px;
-        margin-top: 0;
-        border-width: 15px;
-        border: 15px solid #fff;
-        background-color: transparent;
-        border-radius: 50%;
-        transition: 0.5s ease all;
-    }
-
-    #s-cover:hover #s-circle {
-        top: -1px;
-        width: 67px;
-        height: 15px;
-        border-width: 0;
-        background-color: #fff;
-        border-radius: 20px;
-    }
-
-    #s-cover:hover span {
-        top: 50%;
-        left: 56px;
-        width: 25px;
-        margin-top: -9px;
-        transform: rotateZ(0);
-    }
-
-    #s-cover:hover {
-        bottom: 11px;
-        transform: rotateZ(52deg);
-    }
-
-    #s-cover:hover {
-        bottom: -11px;
-        transform: rotateZ(-52deg);
-    }
-
-    #s-cover:hover, #s-cover:hover {
-        right: -6px;
-        width: 40px;
-        background-color: #fff;
-    }
-
 `
 
-const WideSearchBarComponent = () => (
-    <Search>
+const WideSearchBarComponent = ({ search, update}) => (
+    <WrapperSearch>
         <div className="tb">
-        <div className="td"><input type="text" placeholder="Search" required /></div>
-        <div className="td" id="s-cover">
-            <button type="submit">
-            <div id="s-circle"></div>
-            <span></span>
-            </button>
+        <div className="td">
+            <input keyup={ update } type="text" placeholder="Search" value={ search }/>
+        </div>
+        <div className="td">
+            <Search />           
         </div>
         </div>
-    </Search>
+    </WrapperSearch>
 )
+
+WideSearchBarComponent.propTypes = {
+    search: PropTypes.string.isRequired,
+    update: PropTypes.func.isRequired
+}
 
 export default WideSearchBarComponent

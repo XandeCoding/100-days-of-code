@@ -4,7 +4,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import  styled, { createGlobalStyle }from 'styled-components'
 
 import HeaderComponent from "./header"
-import WideSearchBarComponent from "./commons/searchBar"
 
 
 
@@ -48,7 +47,6 @@ const Layout = ({ children }) => {
     <>
       <GlobalStyles />
       <HeaderComponent siteTitle={ site.siteMetadata.title } />
-      <WideSearchBarComponent />
       <Wrapper>
         <main>{children}</main>
         <footer>

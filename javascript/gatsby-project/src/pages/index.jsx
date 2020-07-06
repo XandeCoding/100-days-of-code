@@ -1,10 +1,21 @@
 import React from 'react'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
+import { connect } from 'react-redux'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import CarouselComponent from '../components/commons/carousel'
+import WideSearchBarComponent from "../components/commons/searchBar"
 
+const mapStateToProps = ({ search }) => {
+  return { search }
+}
+
+const mapDispatchToProps = dispatch => {
+  return { update: () => dispatch({ type: 'UPDATE' })}
+}
+
+const ConnectedSearch = connect(mapStateToProps, mapDispatchToProps)(WideSearchBarComponent)
 
 const IndexPage = () => {
   const { firstImage,  secondImage, thirdImage } = useStaticQuery(graphql`
@@ -44,10 +55,8 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" />
-      <CarouselComponent carouselImages={ images } />
-      
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-typescript/">Go to &quot Using TypeScript &quot</Link>
+      <ConnectedSearch />
+      <CarouselComponent carouselImages={ images } />      
     </Layout>
   )
 }
