@@ -12,4 +12,4 @@ __*plug_test*__ API que fiz usando somente a lib Plug bem simples somente um get
 
 __*sequence*__ Exercício usando GenServer gostei bastante de fazer, basicamente interage com um valor no 'server' incrementando decrementando
 
-__*sequence_sup* Mesmas funcionalidades que o sequence acima só que usando supervisor que dá bastante robustez
+__*sequence_sup*__ Mesmas funcionalidades que o sequence acima só que usando supervisor que dá bastante robustez

@@ -8,10 +8,14 @@ Esse repo contém muitos exercicíos e mini projetinhos que fiz seguindo alguns 
 
 Vou deixar alguns livros que li durante esses 100 dias eles são em inglês porque quis treinar minha leitura, mas se não me engano existem versões em português também.
 
-Eloquent JavaScript
+**_Eloquent JavaScript_**
 
-Programming Elixir
+**_Programming Elixir_**
 
-Refactoring UI
+**_Refactoring UI_**
 
-Learn you some Erlang for great good
+**_Learn you some Erlang for great good_**
+
+### Projetos aplicados
+
+Deixei um breve resumo de cada pasta em que guardei meus códigos dentro de suas respectivas pastas pra ningúem ficar perdido, então é só entrar por exemplo na pasta **Elixir** que tem um resumo de tudo que tem lá :+1:.
