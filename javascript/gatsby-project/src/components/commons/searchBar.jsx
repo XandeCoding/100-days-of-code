@@ -47,12 +47,12 @@ const WrapperSearch = styled.div `
 const WideSearchBarComponent = ({ search, update}) => (
     <WrapperSearch>
         <div className="tb">
-        <div className="td">
-            <input keyup={ update } type="text" placeholder="Search" value={ search }/>
-        </div>
-        <div className="td">
-            <Search />           
-        </div>
+            <div className="td">
+                <input onKeyUp={ update } type="text" placeholder="Search" value={ search }/>
+            </div>
+            <div className="td">
+                <Search />           
+            </div>
         </div>
     </WrapperSearch>
 )

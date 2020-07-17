@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -17,7 +18,7 @@ const mapDispatchToProps = dispatch => {
 
 const ConnectedSearch = connect(mapStateToProps, mapDispatchToProps)(WideSearchBarComponent)
 
-const IndexPage = () => {
+const IndexPage = ({ search }) => {
   const { firstImage,  secondImage, thirdImage } = useStaticQuery(graphql`
     query {
 
@@ -54,11 +55,16 @@ const IndexPage = () => {
 
   return (
     <Layout>
+      <h1>{ search }</h1>
       <SEO title="Home" />
       <ConnectedSearch />
       <CarouselComponent carouselImages={ images } />      
     </Layout>
   )
+}
+
+IndexPage.propTypes = {
+  search: PropTypes.string.isRequired
 }
 
 export default IndexPage

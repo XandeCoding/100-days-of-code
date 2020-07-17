@@ -1,9 +1,11 @@
 import { createStore as reduxCreateStore } from 'redux'
 
 const reducer = (state, action) => {
+    console.log("state", state);
+   console.log("action", action);
     if (action.type === 'UPDATE') {
         return Object.assign({}, state, {
-            search: state.search
+            search: state.search + 'a'
         })
     }
 
