@@ -1,24 +1,14 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import CarouselComponent from '../components/commons/carousel'
-import WideSearchBarComponent from "../components/commons/searchBar"
+import WideSearchBarComponent from '../components/commons/searchBar'
+import SearchBarStore from '../states/searchBarProvider'
 
-const mapStateToProps = ({ search }) => {
-  return { search }
-}
-
-const mapDispatchToProps = dispatch => {
-  return { update: () => dispatch({ type: 'UPDATE' })}
-}
-
-const ConnectedSearch = connect(mapStateToProps, mapDispatchToProps)(WideSearchBarComponent)
-
-const IndexPage = ({ search }) => {
+const IndexPage = () => {
   const { firstImage,  secondImage, thirdImage } = useStaticQuery(graphql`
     query {
 
@@ -52,12 +42,14 @@ const IndexPage = ({ search }) => {
   const images = [ firstImage.childImageSharp.fluid,
                    secondImage.childImageSharp.fluid,                   
                    thirdImage.childImageSharp.fluid ];
+  
+  const searchBar = SearchBarStore.useContainer();
 
   return (
     <Layout>
-      <h1>{ search }</h1>
+      <h2> { searchBar.value }</h2>
       <SEO title="Home" />
-      <ConnectedSearch />
+      <WideSearchBarComponent />
       <CarouselComponent carouselImages={ images } />      
     </Layout>
   )

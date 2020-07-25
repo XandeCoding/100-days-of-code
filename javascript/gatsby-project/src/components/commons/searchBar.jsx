@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Search } from "@styled-icons/boxicons-solid"
+import { Search } from '@styled-icons/boxicons-solid'
+
+import SearchBarStore from '../../states/searchBarProvider'
 
 const WrapperSearch = styled.div `
     display: block;
@@ -44,18 +46,24 @@ const WrapperSearch = styled.div `
     }
 `
 
-const WideSearchBarComponent = ({ search, update}) => (
-    <WrapperSearch>
-        <div className="tb">
-            <div className="td">
-                <input onKeyUp={ update } type="text" placeholder="Search" value={ search }/>
-            </div>
-            <div className="td">
-                <Search />           
-            </div>
-        </div>
-    </WrapperSearch>
-)
+const WideSearchBarComponent = () => {
+  const searchBar = SearchBarStore.useContainer()
+
+  return (
+  <WrapperSearch>
+      <div className="tb">
+          <div className="td">
+              <input type="text" placeholder="Search"
+                     value={ searchBar.value }
+                     onChange={ searchBar.onChange }/>
+          </div>
+          <div className="td">
+              <Search />           
+          </div>
+      </div>
+  </WrapperSearch>
+  )
+}
 
 WideSearchBarComponent.propTypes = {
     search: PropTypes.string.isRequired,
